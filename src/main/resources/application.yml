@@ -1,0 +1,40 @@
+server:
+  port: 8888
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://192.168.0.233:4000/study?useUnicode=true&characterEncoding=UTF-8
+    username: root
+    password: oS20T4Odzcz83JlY
+  # redis 配置
+  redis:
+    database: 0
+    host: 127.0.0.1
+    port: 6379
+    #   password: 123456
+    jedis:
+      pool:
+        min-idle: 1 # 连接池中的最小空闲连接
+        max-idle: 300 # 连接池中的最大空闲连接
+        maxActive: 600 # 连接池最大连接数（使用负值表示没有限制）
+        maxWait: 10 # 连接池最大阻塞等待时间（使用负值表示没有限制）
+    timeout: 1000 # 连接超时时间（毫秒）
+mybatis-plus:
+  #mapper-locations: classpath:mapper/*Mapper.xml
+  type-aliases-package: com.example.entity
+  # sql日志
+  #configuration:
+    #log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+#增加日志配置
+logging:
+  config: classpath:logback.xml
+  level:
+    com.hl.magic: trace
+    io.swagger.models.parameters.AbstractSerializableParameter: error
+#配置分页插件pagehelper
+pagehelper:
+  helperDialect: mysql
+  reasonable: true
+  supportMethodsArguments: true
+  params: count=countSql
+
